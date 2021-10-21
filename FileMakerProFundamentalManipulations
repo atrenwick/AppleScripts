@@ -1,0 +1,25 @@
+tell application "FileMaker Pro"
+	activate
+	-- possible actions
+    -- set one value based on another
+    set field1 to contents of field "field2" of current record of front window
+	  -- delete current record
+    delete current record
+end tell
+    -- go up one row, then set one field based on another with some concatenated elements
+  tell application "System Events"
+		key code 126 using {control down}
+		tell application "FileMaker Pro"
+			activate
+      set contents of field "field3" of current record of front window to thisPreDefinedVariable  & ", " & field4 & ", " & field5
+end tell
+end tell
+
+  -- use GUI scripting to hide current record
+		tell application "FileMaker Pro" to activate
+tell application "System Events"
+						keystroke "t" using {command down}
+					end tell
+			end tell
+			
+
