@@ -1,0 +1,27 @@
+tell application "Finder"
+	with timeout of 3600 seconds
+  -- long timeout allows for large files, as well as access to slow external drives 
+		set PartA to "/Volumes/Primary" as string
+		set partB to "\\ " -- one way to get around issues with spaces in folder paths is to split the name then join it again…
+		set partC to "Store/tweetsScratch/__current/myFolder/"
+		set partD to "Store/tweetsScratch/__current/"
+		set partZ to "/Users/Adam/Dropbox/R/TwitterStream/"
+		set partY to "/Users/Adam/Dropbox/R/TwitterStream/_current/"
+		set thisCount to count of every item of folder "myFolder" of folder "__current" of folder "tweetsScratch" of disk "CERLA Store"
+		set thatCount to count of every item of folder "_current" of folder "TwitterStream" of folder "R" of folder "Dropbox" of home
+		repeat with i from 1 to thisCount
+			set inputName to name of file i of folder "myFolder" of folder "__current" of folder "tweetsScratch" of disk "CERLA Store"
+			--set inputName to name of file i of folder "__current" of folder "TwitterStream" of folder "R" of folder "Dropbox" of home
+			set thisLength to length of (inputName as string)
+			set outputBase to (characters 1 thru (thisLength - 5) of inputName) & "-" as string
+			
+			set CommandHead to "split -l 1000000 "
+			-- set theCommand to CommandHead & partY & inputName & " " & partZ & outputBase
+			set theCommand to CommandHead & PartA & partB & partC & inputName & " " & PartA & partB & partD & outputBase
+			--display dialog (theCommand)
+			tell application "Terminal" to do shell script theCommand
+			
+		end repeat
+	end timeout
+end tell
+
