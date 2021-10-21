@@ -1,0 +1,44 @@
+
+tell application "Finder"
+	
+	set fileCount to (count of every item of folder "__current" of folder "tweetsScratch" of disk "Store") as string
+	set theseFiles to {"Volumes:Store:tweetsScratch:__current:"}
+	set outputDestination to {"Volumes:Store:tweetsScratch:out:"}
+	repeat with i from 1 to (fileCount - 2)
+		
+		set thisName to get name of item i of folder "__current" of folder "tweetsScratch" of disk "Store" as string
+		set currentFile to theseFiles & thisName as string
+		set shortName to (characters 1 thru ((length of thisName as string) - 5) of thisName) as string
+		
+		set newName to shortName & "-FR.json"
+		set NewFileFull to outputDestination & newName as string
+		
+		delay 2
+		tell application "BBEdit"
+			set theseOptions to {search mode:grep, showing results:false}
+			with timeout of 86400 seconds
+				activate
+				extract "{\"created_at\":\"(.+?)\",\"id\":([\\d]+),\"id_str\":\"([\\d]+)\",\"text\":\"(.+?),(display_text_range\":\\[.+?\\],\"source\"|\"source\").+?\"lang\":\"fr\",\"timestamp_ms\":\"([0-9]+)\"}" searching in {file currentFile} options {search mode:grep} with search git_ignored files given using:"{\"created_at\":\"\\1\",\"id\":\"\\2\",\\\"id_str\":\"\\3\",\"text\":\"\\4,\"lang\":\"fr\",\"timestamp_ms\":\"\\6\"}"
+			-- this is a customised regex to get specific chunks of data from json-formatted docs
+      activate
+
+-- use a quick and nasty way/brute force way to get around issues with length of file names, wildly varying amounts of data returned, duration
+				select text 1 of project window 1
+				copy selection
+				make new text document at project window 1
+				paste
+				save text document 1 to file NewFileFull without saving as stationery
+
+			end timeout
+			close text document 1 of project window 1
+			delay 2
+			
+			close text document 1 of project window 1 without saving
+			delay 2
+			
+		end tell
+		
+	end repeat
+	activate
+	
+end tell
