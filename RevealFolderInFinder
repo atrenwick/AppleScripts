@@ -1,0 +1,4 @@
+tell application "Finder" 
+activate
+open folder "Macintosh HD:Users:me:folder1:folder2:folder3"
+end tell
