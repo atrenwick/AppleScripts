@@ -1,0 +1,41 @@
+tell application "BBEdit"
+	set theseFiles to {"Desktop:in:thisFolder:"}
+	set theseOptions to {search mode:grep, showing results:false}
+	set thOseOptions to {starting at top:true, showing results:false}
+	
+	replace "<p class=\"article__quote\">.+?</p>$\\n" using "" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "  " using " " saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\n " using "\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	
+	replace "googletag.cmd.push(function() {\\ngoogletag.display('rossel-leader-bottom');\\n//googletag.pubads().refresh();\\n});\\n" using "" saving yes searching in theseFiles options thOseOptions with search git_ignored files
+	replace "googletag.cmd.push(function() {\\ngoogletag.display('rossel-leader-bottom');\\n//googletag.pubads().refresh();\\n});\\n" using "" saving yes searching in theseFiles options thOseOptions with search git_ignored files
+	replace "googletag.cmd.push(function() {\\ngoogletag.display('rossel-imu-bottom-mobile');\\n//googletag.pubads().refresh();\\n});\\n" using "" saving yes searching in theseFiles options thOseOptions with search git_ignored files
+	replace "googletag.cmd.push(function() {\\ngoogletag.display('rossel-imu-top-mobile');\\n//googletag.pubads().refresh();\\n});\\n" using "" saving yes searching in theseFiles options thOseOptions with search git_ignored files
+	replace "googletag.cmd.push(function() {\\ngoogletag.display('rossel-imu-middle-moblile');\\n//googletag.pubads().refresh();\\n});\\n" using "" saving yes searching in theseFiles options thOseOptions with search git_ignored files
+	replace "<div class=\"gr-media gr-media--twitter\">\\n<blockquote class=\"twitter-tweet\" lang=\"en\"><a href=\"https://twitter.com/.+?\"></a></blockquote>\\n\\n</div>\\n" using "" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "<div class=\"gr-media gr-media--twitter\">\\n<blockquote class=\"twitter-tweet\" lang=\"en\"><a href=\"https://twitter.com/.+?\"></a></blockquote>\\n\\n</div>" using "" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\x{00}" using "\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	
+	replace "<blockquote class=\"instagram-media\" data-instgrm-captioned data-instgrm-permalink=\".+?</div></blockquote>\\n" using "" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "<div class=\"gr-media gr-media--facebook\">\\n(.+?\\n|\\n)+?}\\(document, 'script', 'facebook-jssdk'\\)\\);\\n" using "" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\n\\n\\n" using "\\n\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\n\\n\\n" using "\\n\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\n\\n\\n" using "\\n\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\n\\n\\n" using "\\n\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\n\\n\\n" using "\\n\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\n\\n\\n" using "\\n\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\n\\n\\n" using "\\n\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	replace "\\n\\n\\n" using "\\n\\n" saving yes searching in theseFiles options theseOptions with search git_ignored files
+	
+end tell
