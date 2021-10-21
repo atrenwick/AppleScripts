@@ -1,0 +1,76 @@
+--Get 20MinsCH--------------------------------------------------------------------------------------------------------------------------------
+set CH_Header to "https://epaper.20minuten.ch/?locale=fr#read/"
+set theYear to year of (current date)
+set theMonth to month of (current date) as integer
+if (month of (current date)) < 10 then set theMonth to "0" & theMonth
+set theDay to (day of (current date))
+if (day of (current date)) < 10 then set theDay to "0" & theDay
+set SwissDate to "/" & theYear & "-" & theMonth & "-" & theDay
+
+set Location1 to "648/Lausanne"
+set Location2 to "646/Genève"
+set Location3 to "640/Region%20Luzern"
+set Location4 to "644/Region%20Zürich"
+set Location5 to "636/Region%20Bern"
+set Location6 to "638/Region%20Basel"
+set Location7 to "642/Region%20St.%20Gallen"
+set Location8 to "650/Ticino"
+
+set theDate to "_" & theYear & theMonth & theDay
+set CHLink1 to CH_Header & Location1 & SwissDate
+set CHLink2 to CH_Header & Location2 & SwissDate
+set CHLink3 to CH_Header & Location3 & SwissDate
+set CHLink4 to CH_Header & Location4 & SwissDate
+set CHLink5 to CH_Header & Location5 & SwissDate
+set CHLink6 to CH_Header & Location6 & SwissDate
+set CHLink7 to CH_Header & Location7 & SwissDate
+set CHLink8 to CH_Header & Location8 & SwissDate
+
+
+
+-- get BelgianMetroLinks for FR and NL----------------------------------------------------------------------------------------------------------------------------------------
+set BelgianFRHeader to "http://journal.metrotime.be/?utm_source=metro&utm_medium=epaper&utm_campaign=menu#Metro/FR/web,"
+set theYear to year of (current date)
+set theMonth to month of (current date) as integer
+if (month of (current date)) < 10 then set theMonth to "0" & theMonth
+set theDay to (day of (current date))
+if (day of (current date)) < 10 then set theDay to "0" & theDay
+set BelgianFRSpec1 to theYear & "-" & theMonth & "-" & theDay & ",ALL|"
+set BelgianFRSpec2 to "ME_JOURNAL,"
+set BelgianFRSpec3 to theYear & "-" & theMonth & "-" & theDay & ",ALL,1|1"
+--
+set BelgianFRLink to BelgianFRHeader & BelgianFRSpec1 & BelgianFRSpec2 & BelgianFRSpec3
+--
+--
+set BelgianNLHeader to "https://krant.metrotime.be/?utm_source=metro&utm_medium=epaper&utm_campaign=menu#Metro/NL/web,"
+set theYear to year of (current date)
+set theMonth to month of (current date) as integer
+if (month of (current date)) < 10 then set theMonth to "0" & theMonth
+set theDay to (day of (current date))
+if (day of (current date)) < 10 then set theDay to "0" & theDay
+set BelgianNLSpec1 to theYear & "-" & theMonth & "-" & theDay & ",ALL|"
+set BelgianNLSpec2 to "ME_KRANT,"
+set BelgianNLSpec3 to theYear & "-" & theMonth & "-" & theDay & ",ALL,1|1"
+--
+set BelgianNLLink to BelgianNLHeader & BelgianNLSpec1 & BelgianNLSpec2 & BelgianNLSpec3
+--
+tell application "Safari"
+	activate
+	tell window 1
+		set current tab to (make new tab with properties {URL:CHLink1})
+		set current tab to (make new tab with properties {URL:CHLink2})
+		set current tab to (make new tab with properties {URL:CHLink3})
+		set current tab to (make new tab with properties {URL:CHLink4})
+		set current tab to (make new tab with properties {URL:CHLink5})
+		set current tab to (make new tab with properties {URL:CHLink6})
+		set current tab to (make new tab with properties {URL:CHLink7})
+		set current tab to (make new tab with properties {URL:CHLink8})
+		set current tab to (make new tab with properties {URL:BelgianFRLink})
+		set current tab to (make new tab with properties {URL:BelgianNLLink})
+		
+		
+		
+	end tell
+end tell
+
+delay 20
