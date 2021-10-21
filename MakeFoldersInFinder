@@ -1,0 +1,6 @@
+tell application "Finder"
+	set thePath to folder "input" of folder "folder1" of folder "Downloads" of home
+	repeat with i from 1 to 20
+		make new folder at thePath with properties {name:"Candidate " & i}
+	end repeat
+end tell
